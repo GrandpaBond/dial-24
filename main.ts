@@ -1,14 +1,16 @@
 /**
  * Provides a simple 24-position dial.
  */
-//% color=190 weight=100 icon="\u15f" block="Dial-24"
+
+//% color=190 weight=100 icon="\uf3fd" block="Dial-24"
+
 namespace Dial24 {
 
     let dial24_list: number[] = []
     let dial24_is = -2
 
-    //% block
-    export function point_to(value: number) {
+    //% block="Point to %value"
+    export function set_dial(value: number) {
         if (dial24_is == -2) {
             dial24_init()
         }
@@ -18,8 +20,6 @@ namespace Dial24 {
         dial24_is = dial24_list[(value + 24) % 24]
         dial_flip(dial24_is)
     }
-
-
 
     function dial24_init() {
         dial24_list = [
@@ -59,6 +59,7 @@ namespace Dial24 {
     function dial24_flip_xy(xy: number) {
         led.toggle(Math.idiv(xy, 10), xy % 10)
     }
+
     function dial24_finish() {
         dial24_list = []
         if (dial24_is != -1) {
@@ -67,3 +68,4 @@ namespace Dial24 {
         }
     }
 }
+
